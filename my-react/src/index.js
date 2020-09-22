@@ -1,1 +1,4 @@
-document.write("Hell0")
+import React from "./react"
+
+
+React.render("Hello", document.getElementById('root'));
