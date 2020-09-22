@@ -1,6 +1,6 @@
 
 import $ from 'jquery'
-import createReactUnit from './util'
+import createReactUnit from './unit'
 
 import createElement from './element'
 

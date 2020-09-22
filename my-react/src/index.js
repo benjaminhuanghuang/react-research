@@ -4,5 +4,7 @@ let element = React.createElement("div", { name: "xxx" }, 'hello', React.createE
 
 console.log(element);
 
-React.render("Hello", document.getElementById("root"));
+//React.render("Hello", document.getElementById("root"));
+React.render(element, document.getElementById("root"));
+
     
