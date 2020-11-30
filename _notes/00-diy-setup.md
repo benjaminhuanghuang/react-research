@@ -20,6 +20,3 @@ Create script
     "build": "webpack --env production"
   },
 ```
-
-
-##

@@ -1,6 +1,8 @@
 const path = require("path");
 module.exports = {
-  entry: "./src/jsx-demo-index.jsx",
+  // entry: "./src/jsx-demo-index.jsx",
+  // entry: "./src/react-diy-ele-index.jsx",
+  entry: "./src/react-diy-render-index.jsx",
   module: {
     rules: [
       {
@@ -15,7 +17,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".js",".jsx"],
+    extensions: [".js", ".jsx"],
   },
   output: {
     path: path.resolve(__dirname, "public"),
