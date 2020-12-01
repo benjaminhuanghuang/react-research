@@ -1,8 +1,7 @@
-# JSX to JS
+# React DIY
 
-## Babel repl
-https://babeljs.io/en/repl
-
+## Babel translat JSX to JS
+Babel repl : https://babeljs.io/en/repl
 ```
 <div id="id" key="key">
   <span>1</span>
@@ -21,7 +20,24 @@ React.createElement("div", {
 );
 ```
 
-## ReactElement
-source code
+## DIY React.createElement
+Create a javascript object as the virtual DOM
+```
+function createElement(tag, attrs, ...children)
+```
+
+- ReactElement source code
 https://github.com/facebook/react/blob/master/packages/react/src/React.js
 https://github.com/facebook/react/blob/master/packages/react/src/ReactElement.js
+
+
+## DIY ReactDOM.render
+Render the virtual DOM
+```
+function render(vnode, container)
+```
+
+
+##
+
+

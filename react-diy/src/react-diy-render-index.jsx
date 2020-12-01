@@ -31,11 +31,13 @@ const ReactDOM = {
 function render(vnode, container) {
   if (vnode === undefined) return;
 
+  // render text and return 
   if (typeof vnode === "string") {
     const textNode = document.createTextNode(vnode);
     return container.appendChild(textNode);
   }
-  // virtual DOM
+  
+  // render virtual DOM
   const { tag, attrs } = vnode;
   const dom = document.createElement(tag);
 

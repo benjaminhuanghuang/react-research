@@ -2,9 +2,8 @@
 
 
 ## Key points
-- JSX
+- React DIY: JSX to JS, create element, render
 - React Source Code
-- virtual DOM
 - Diff algorithm
 - setState
 - Hooks
