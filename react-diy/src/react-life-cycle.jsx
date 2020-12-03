@@ -8,13 +8,55 @@ class Component {
     this.props = props;
     this.state = {};
   }
+
+  setState(newState) {
+    // copy object
+    Object.assign(this.state, newState);
+    renderComponent(this);
+  }
 }
 
 class HomeClass extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      num: 0,
+    };
+  }
+
+  componentWillMount() {
+    console.log("componentWillMount");
+  }
+
+  componentDidMount() {
+    console.log("componentDidMount");
+  }
+
+  componentWillReceiveProps(props) {
+    console.log("componentWillReceiveProps", props);
+  }
+
+  componentWillUpdate(props) {
+    console.log("componentWillUpdate");
+  }
+
+  componentDidUpdate(props) {
+    console.log("componentDidUpdate");
+  }
+
+  componentDidMount(props) {
+    console.log("componentDidMount");
+  }
+  handlerClick() {
+    this.setState({
+      num: this.state.num + 1,
+    });
+  }
   render() {
     return (
       <div className="active">
-        <h3 className="title">This is Class component</h3>
+        <h3 className="title">This is Class component {this.state.num}</h3>
+        <button onClikc={this.handleClick.bind(this)}>click</button>
       </div>
     );
   }
@@ -60,6 +102,41 @@ function createComponent(comp, props) {
   }
 }
 
+function setComponentProps(comp, props) {
+  if (!comp.base) {
+    if (comp.componentWillMount) {
+      comp.componentWillMount();
+    } else if (comp.componentWillReceiveProps) {
+      comp.componentWillReceiveProps(props);
+    }
+  }
+  comp.props = props;
+  renderComponent(comp);
+}
+
+function renderComponent(comp) {
+  let base;
+  const jsxObject = comp.render();
+  let base = _render(jsxObject);
+  if (comp.base && comp.componentWillUpdate) {
+    // is loaed
+    comp.componentWillUpdate();
+  }
+
+  if (comp.base) {
+    if (comp.componentDidUpdate) {
+      comp.componentDidUpdate;
+    } else if (comp.componentDidMount) {
+      comp.componentDidMount();
+    }
+  }
+
+  // update/replace node
+  if (comp.base && comp.base.parentNode) {
+    comp.base.parentNode.replaceChild(base, comp.base);
+  }
+  comp.base = base;
+}
 
 function _render(vnode) {
   if (vnode === undefined || vode === null || typeof vnode === "boolean") vnode = "";
@@ -80,7 +157,7 @@ function _render(vnode) {
     comps.props = props;
     // 3. render
     const jsxObject = comp.render();
-    return  _render(jsxObject)
+    return _render(jsxObject);
   }
 
   // render virtual DOM
@@ -125,7 +202,7 @@ function _render(vnode) {
     });
   }
   // render sub element
-  vnode.children.forEach((child) => render(child, dom));
+  if (vnode.children) vnode.children.forEach((child) => render(child, dom));
 
   return dom;
 }
